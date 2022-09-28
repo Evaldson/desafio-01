@@ -47,7 +47,7 @@ app.post('/users', (request, response) => {
 app.get('/todos', checksExistsUserAccount, (request, response) => {
   const user = request.userFound;
 
-  return response.json(user.todos);
+  return response.status(200).json(user.todos);
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
@@ -64,7 +64,7 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
 
   userFound.todos.push(userTodo);
 
-  return response.json(userTodo);
+  return response.status(201).json(userTodo);
 
 
 
