@@ -110,7 +110,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
   const todo = user.todos.find((todo) => todo.id === todoId);
 
   if (todo) {
-    user.todos.splice(todo, 1);
+    user.todos.splice(users.indexOf(todo), 1);
     return response.send().status(204);
   } else {
     return response.status(404).json({ error: "todo not found" });
