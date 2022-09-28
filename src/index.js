@@ -47,7 +47,7 @@ app.post('/users', (request, response) => {
 app.get('/todos', checksExistsUserAccount, (request, response) => {
   const user = request.userFound;
 
-  return response.status(200).json(user.todos);
+  return response.status(200).json(user.todos).send();
 });
 
 app.post('/todos', checksExistsUserAccount, (request, response) => {
@@ -97,9 +97,9 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
 
   if (todo) {
     todo.done = true;
-    return response.send().status(201);
+    return response.status(200).send();
   } else {
-    return response.status(404).json({ error: "todo not found" });
+    return response.status(404).json({ error: "todo not found" }).send();
   }
 });
 
