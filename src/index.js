@@ -27,7 +27,7 @@ app.post('/users', (request, response) => {
   const user = request.body;
   const userFound = users.find((userTodo) => userTodo.username === user.username);
 
-  if (userFound) {
+  if (!userFound) {
     const userSigned = {
       id: uuidv4(),
       name: user.name,
