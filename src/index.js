@@ -35,9 +35,9 @@ app.post('/users', (request, response) => {
       todos: []
     }
     users.push(userSigned);
-    response.send().status(201).json(userSigned);
+    response.status(201).json(userSigned);
   } else {
-    return response.status(404).json({ error: "user already exist" });
+    return response.status(400).json({ error: "user already exist" });
   }
 
 
