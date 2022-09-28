@@ -23,7 +23,19 @@ function checksExistsUserAccount(request, response, next) {
   }
 }
 
-app.post('/users', (request, response) => {
+function checksExistsUserAccountCreated(request, response, next) {
+  const user = request.headers; 
+
+  const userFound = users.find((userTodo) => userTodo.username === user.username);
+
+  if (userFound) {
+    return response.status(404).json({ error: "user already exist" });
+  } else {
+    return next();
+  }
+}
+
+app.post('/users', checksExistsUserAccountCreated, (request, response) => {
   const user = request.body;
 
   const userSigned = {
