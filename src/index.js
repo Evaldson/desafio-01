@@ -111,9 +111,9 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   if (todo) {
     user.todos.splice(users.indexOf(todo), 1);
-    return response.send().status(204);
+    return response.status(204).send();
   } else {
-    return response.status(404).json({ error: "todo not found" });
+    return response.status(404).json({ error: "todo not found" }).send();
   }
 });
 
