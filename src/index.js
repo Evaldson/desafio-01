@@ -97,7 +97,7 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
 
   if (todo) {
     todo.done = true;
-    return response.send().status(200);
+    return response.send().status(201);
   } else {
     return response.status(404).json({ error: "todo not found" });
   }
@@ -111,7 +111,7 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   if (todo) {
     user.todos.splice(todo, 1);
-    return response.status(200).json(user.todos);
+    return response.send().status(204);
   } else {
     return response.status(404).json({ error: "todo not found" });
   }
